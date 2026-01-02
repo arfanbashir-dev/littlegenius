@@ -1,0 +1,10 @@
+# dependencies & build
+myapp/node_modules
+myapp/.next
+
+# env files
+myapp/.env
+myapp/.env.local
+
+# OS
+.DS_Store
