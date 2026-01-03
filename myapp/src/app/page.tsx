@@ -9,9 +9,9 @@
 import React from "react"
 
 import {
-         HomeVideoPage, 
+        //  HomeVideoPage, 
          HomeWellComePage,
-        //  HomeDetailPage, 
+         HomeDetailPage, 
         //  HomeKeyFeaturePage, 
         //  HomeSchoolInfoPage, 
         //  HomeFacilitiesPage, 
@@ -24,9 +24,9 @@ export default function HomePage(){
       return(
           <div>
 
-            <HomeVideoPage />
+            {/* <HomeVideoPage /> */}
             <HomeWellComePage />
-            {/* <HomeDetailPage /> */}
+            <HomeDetailPage />
             {/* <HomeKeyFeaturePage /> */}
             {/* <HomeSchoolInfoPage /> */}
             {/* <HomeFacilitiesPage /> */}

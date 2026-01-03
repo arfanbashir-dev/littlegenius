@@ -1,7 +1,7 @@
 
 // import HomeVideoPage from "./HomeVideoPage"
 import HomeWellComePage from "./HomeWellcomePage"
-// import HomeDetailPage from "./HomeDetailPage"
+import HomeDetailPage from "./HomeDetailPage"
 // import HomeKeyFeaturePage from './HomeKeyFeaturesPage'
 // import HomeSchoolInfoPage from './HomeSchoolInfoPage'
 // import HomeFacilitiesPage from './HomeFacilitiesPage'
@@ -13,7 +13,7 @@ export{
           
     // HomeVideoPage,
     HomeWellComePage,
-    // HomeDetailPage,
+    HomeDetailPage,
     // HomeKeyFeaturePage,
     // HomeSchoolInfoPage,
     // HomeFacilitiesPage ,
