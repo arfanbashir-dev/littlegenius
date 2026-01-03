@@ -28,7 +28,7 @@ export const authOptions :NextAuthOptions = {
                 if(!ispasswordValid) return null;
 
                 return {
-                    id: dbUser.user_id,
+                    id: dbUser.user_id.toString(),
                     email:dbUser.user_email,
                     role:dbUser.user_role,
                 }                
@@ -36,17 +36,17 @@ export const authOptions :NextAuthOptions = {
         })
     ],
     callbacks:{
-        async jwt({user,token}:any){
+        async jwt({user,token}){
             if(user){
                 token.sub = user.id;
-                token.role = user.role;
+                token.role = (user as any).role;
             }
             return token;
         },
-        async session({token,session}:any){
+        async session({token,session}){
             if(token){
                 session.user.id = token.sub;
-                session.user.role = token.role;
+                session.user.role = token.role as string;
             }
             return session;
         }
