@@ -9,7 +9,7 @@
 import React from "react"
 
 import {
-        //  HomeVideoPage, 
+         HomeVideoPage, 
          HomeWellComePage,
         //  HomeDetailPage, 
         //  HomeKeyFeaturePage, 
@@ -24,7 +24,7 @@ export default function HomePage(){
       return(
           <div>
 
-            {/* <HomeVideoPage /> */}
+            <HomeVideoPage />
             <HomeWellComePage />
             {/* <HomeDetailPage /> */}
             {/* <HomeKeyFeaturePage /> */}
