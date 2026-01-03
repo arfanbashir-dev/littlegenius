@@ -5,14 +5,14 @@ import Image from 'next/image';
 import LogoImg from '../../public/logopreschool.png';
 
 import { IoSearch } from "react-icons/io5";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 import {navObj} from '@/constants/NavObj';
 import { FaCaretDown } from "react-icons/fa";
 
 export default function Navbar() {
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   
   
   return (
@@ -62,9 +62,9 @@ export default function Navbar() {
           ))}          
           
         
-          {session?.user?.role === 'admin' && (
+          {/* {session?.user?.role === 'admin' && (
             <Link href="/dashboard" className="link font-medium">DASHBOARD</Link>
-          )}     
+          )}      */}
         
         </div>
 
