@@ -1,98 +1,91 @@
 'use client'
 
-import { NavbarObj } from "../constants/NavObj"
-import Image from "next/image"
-import LogoImg from '../../public/logopreschool.png'
-import Link from "next/link"
-import { FaCaretDown } from "react-icons/fa"
-import { signOut, useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import Link from 'next/link';
+import Image from 'next/image';
+import LogoImg from '../../public/logopreschool.png';
 
+import { IoSearch } from "react-icons/io5";
+import { useSession } from "next-auth/react";
 
+import {navObj} from '@/constants/NavObj';
+import { FaCaretDown } from "react-icons/fa";
 
+export default function Navbar() {
 
-export default function Navbar(){
+  const { data: session } = useSession();
+  
+  
+  return (
+  
+  <nav className="bg-slate-600  fixed z-10 h-32 w-full  ">
 
-    const router = useRouter();
-    const {data:seesion,status} = useSession();
+    <div className=" max-w-screen-xl mx-auto  sm:px-6">
+      
+      <div className="flex-between">
 
-    const handleSignOut  = async () => { await signOut({redirect:false})
-        router.push('/adminlogin')
-    }
-    
-    return(
-        <div className="h-32 bg-yellow-500 text-purple-600">
-            
-            <div className="flex flex-col">
-
-                <div  className="flex justify-between">
-
-                    <div className=" flex justify-center gap-1 items-center">
-                        <Image src={LogoImg} alt="LogoImg" className="w-24"/>
-                        <span>Little Geniuos Tech School</span>
-                    </div>
-                    <div className="p-5">
-                        {/* <label htmlFor="">Search</label> */}
-                        <input type="text" className="w-60 rounded-md placeholder-black bg-yellow-700" 
-                            placeholder="Type to search" 
-                            />
-                    </div>
-
-                </div>
-                
-
-                <div className="">
-
-                    <ul className=" flex flex-row gap-16 justify-center font-bold">
-                        {NavbarObj.map((item) => (
-                            <li key={item.id} className=" relative group">
-                                <Link href={item.href} className=" flex justify-center items-center gap-1 hover:text-black"
-                                >   {item.title}
-                                    {item.submenu && (<FaCaretDown className="transition-transform duration-200 group-hover:rotate-180" />)} 
-                                    
-                                </Link>
-
-                                {item.submenu && (
-                                <ul 
-                                    className="hidden absolute text-purple-500 bg-yellow-500 w-60 rounded-lg group-hover:block p-2">
-                                    {item.submenu.map((subitem) => (
-                                        <li key={subitem.id} >
-                                            <Link href={subitem.href} className=" hover:text-black"
-                                            >{subitem.subtitle}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                            </li>
-                            
-                        ))}
-
-                        <div className="">
-                            {status === 'loading' && ( <span>Loading...</span>)}
-                            {seesion? (
-                                <div>
-                                    <Link href='/dashboard' className="hover:text-black"
-                                    >Dashboard
-                                    </Link>
-                                    <button 
-                                        onClick={handleSignOut}
-                                        className="text-black"
-                                    >LogOut
-                                    </button>
-
-                                </div>
-                            ) : (
-                                <Link href='/adminlogin'>LogIn</Link>
-                            )}
-
-                        </div>
-                    </ul>
-
-                </div>
-
-            </div>
-
+        {/* Logo + Title */}
+        <div className="flex-center ">
+          <Image src={LogoImg} alt="logo" className="w-24 " />
+          <span>Little Genius TechSchool</span>
         </div>
-    )
+
+        {/* Search */}
+        <div className="relative flex-center gap-1">
+          <input type="text" placeholder="Search" className="mr-10  bg-light "/>
+          <IoSearch className="absolute top-2 right-12 text-white" />
+          
+        </div>
+
+      </div>
+
+      {/* Nav Links */}
+      
+        <div className="lg:flex-center gap-10 ">
+          {navObj.map((item) => (
+            <div key={item.id} className="group relative ">
+              <Link href={item.href} className="link flex-center gap-1  font-medium">
+                {item.title}
+                {item.submenu && <FaCaretDown className="group-hover:rotate-180" />}
+              </Link>
+              {item.submenu && (
+                <ul className="absolute  left-0 w-48 bg-light font-medium  p-2 rounded-lg shadow-lg hidden group-hover:block z-50">
+                  {item.submenu.map((sub, idx) => (
+                    <li key={idx}>
+                      <Link href={sub.href} className="block px-4 py-2 link">
+                        {sub.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}          
+          
+        
+          {session?.user?.role === 'admin' && (
+            <Link href="/dashboard" className="link font-medium">DASHBOARD</Link>
+          )}     
+        
+        </div>
+
+
+      
+
+            
+        </div>
+      
+          
+    </nav>
+  );
 }
+
+
+
+
+
+
+
+
+
+
+
